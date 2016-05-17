@@ -199,5 +199,16 @@ class DefaultTokenProvider implements IProvider {
 			throw new InvalidTokenException();
 		}
 	}
+	
+	/**
+	 * Get all token of a user
+	 *
+	 * @param string $uid user ID
+	 * @return DefaultToken[]
+	 * @since 9.1
+	 */
+	public function getTokenByUser($uid) {
+		return $this->mapper->getTokenByUser($uid);
+	}
 
 }

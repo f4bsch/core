@@ -30,6 +30,7 @@ interface IProvider {
 	 * @param string $token
 	 * @throws InvalidTokenException
 	 * @return IToken
+	 * @since 9.1
 	 */
 	public function validateToken($token);
 
@@ -37,6 +38,16 @@ interface IProvider {
 	 * Update token activity timestamp
 	 *
 	 * @param IToken $token
+	 * @since 9.1
 	 */
 	public function updateToken(IToken $token);
+
+	/**
+	 * Get all token of a user
+	 * 
+	 * @param string $uid user ID
+	 * @return IToken[]
+	 * @since 9.1
+	 */
+	public function getTokenByUser($uid);
 }

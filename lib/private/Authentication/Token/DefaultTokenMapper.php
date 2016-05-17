@@ -83,4 +83,21 @@ class DefaultTokenMapper extends Mapper {
 		return DefaultToken::fromRow($data);
 	}
 
+	/**
+	 * Get all token of a user
+	 *
+	 * @param string $uid
+	 * @return DefaultToken[]
+	 */
+	public function getTokenByUser($uid) {
+		/* @var $qb IQueryBuilder */
+		$qb = $this->db->getQueryBuilder();
+		$sql = $qb->select('id', 'uid', 'password', 'name', 'type', 'token', 'last_activity')
+			->from('authtoken')
+			->where($qb->expr()->eq('uid', $qb->createParameter('uid')))
+			->getSQL();
+
+		return $this->findEntities($sql, ['uid' => $uid]);
+	}
+
 }
